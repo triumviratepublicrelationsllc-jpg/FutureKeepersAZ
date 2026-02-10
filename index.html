@@ -1,0 +1,756 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Future Keepers AZ — Chandler, AZ. Private and group soccer training." />
+  <title>Future Keepers AZ • Chandler, AZ</title>
+  <style>
+    :root{
+      /* Palette pulled from logo */
+      --navy:#0b2742;
+      --navy-2:#0f355a;
+      --orange:#f47a1f;
+      --orange-2:#d65f12;
+      --ink:#0a0f14;
+      --muted:#5b6775;
+      --bg:#fbfaf7;
+      --card:#ffffff;
+      --ring:rgba(244,122,31,.28);
+      --shadow: 0 10px 30px rgba(11,39,66,.12);
+      --shadow-soft: 0 6px 18px rgba(11,39,66,.10);
+      --radius:18px;
+      --radius-sm:14px;
+      --max:1120px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--ink);
+      background: radial-gradient(1200px 600px at 20% 0%, rgba(244,122,31,.08), transparent 55%),
+                  radial-gradient(900px 500px at 90% 10%, rgba(11,39,66,.10), transparent 50%),
+                  var(--bg);
+      line-height:1.5;
+    }
+
+    a{color:inherit}
+    img{max-width:100%; height:auto}
+
+    .skip{
+      position:absolute; left:-999px; top:0;
+      background:var(--card);
+      color:var(--ink);
+      padding:.6rem .9rem;
+      border-radius:10px;
+      box-shadow:var(--shadow-soft);
+      z-index:9999;
+    }
+    .skip:focus{left:12px; top:12px; outline:3px solid var(--ring)}
+
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter:saturate(140%) blur(10px);
+      background:rgba(251,250,247,.82);
+      border-bottom:1px solid rgba(11,39,66,.10);
+    }
+
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 18px}
+
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:14px;
+      padding:10px 0;
+    }
+
+    .brand{
+      display:flex; align-items:center; gap:12px; min-width: 220px;
+      text-decoration:none;
+    }
+
+    .brand-mark{
+      width:46px; height:46px;
+      border-radius:14px;
+      background:linear-gradient(135deg, rgba(11,39,66,.08), rgba(244,122,31,.10));
+      display:grid; place-items:center;
+      box-shadow:0 1px 0 rgba(11,39,66,.05);
+      overflow:hidden;
+      border:1px solid rgba(11,39,66,.12);
+    }
+
+    .brand-mark img{width:100%; height:100%; object-fit:cover}
+
+    .brand-text{display:flex; flex-direction:column; line-height:1.1}
+    .brand-text strong{font-size:14px; letter-spacing:.3px; color:var(--navy)}
+    .brand-text span{font-size:12px; color:var(--muted)}
+
+    nav ul{list-style:none; display:flex; gap:10px; padding:0; margin:0}
+    nav a{
+      text-decoration:none;
+      font-size:13px;
+      padding:10px 12px;
+      border-radius:12px;
+      color:var(--navy);
+    }
+    nav a:hover{background:rgba(11,39,66,.06)}
+    nav a:focus-visible{outline:3px solid var(--ring); outline-offset:2px}
+
+    .nav-right{display:flex; align-items:center; gap:10px}
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:8px;
+      border:1px solid rgba(11,39,66,.14);
+      background:var(--card);
+      color:var(--navy);
+      padding:10px 14px;
+      border-radius:14px;
+      font-weight:650;
+      font-size:13px;
+      text-decoration:none;
+      box-shadow:0 1px 0 rgba(11,39,66,.05);
+      transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+    }
+    .btn:hover{transform: translateY(-1px); box-shadow:var(--shadow-soft); border-color:rgba(11,39,66,.18)}
+    .btn:active{transform: translateY(0)}
+    .btn:focus-visible{outline:3px solid var(--ring); outline-offset:2px}
+
+    .btn.primary{
+      background:linear-gradient(135deg, var(--orange), var(--orange-2));
+      border-color:rgba(0,0,0,.0);
+      color:#fff;
+      box-shadow:0 10px 22px rgba(244,122,31,.22);
+    }
+
+    .menu{
+      display:none;
+      border:1px solid rgba(11,39,66,.14);
+      background:var(--card);
+      border-radius:14px;
+      padding:10px 12px;
+      font-weight:650;
+      color:var(--navy);
+    }
+    .menu:focus-visible{outline:3px solid var(--ring); outline-offset:2px}
+
+    /* Hero */
+    main{padding:28px 0 70px}
+
+    .hero{
+      padding:36px 0 10px;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:18px;
+      align-items:center;
+    }
+
+    .hero h1{
+      margin:0;
+      font-size: clamp(30px, 4.2vw, 48px);
+      letter-spacing:-.6px;
+      color:var(--navy);
+    }
+
+    .hero p{
+      margin:10px 0 0;
+      max-width: 60ch;
+      color:var(--muted);
+      font-size:16px;
+    }
+
+    .hero-actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:18px}
+
+    .hero-card{
+      background:linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.75));
+      border:1px solid rgba(11,39,66,.10);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:16px;
+      display:flex;
+      gap:14px;
+      align-items:center;
+    }
+
+    .badge{
+      width:54px; height:54px;
+      border-radius:18px;
+      background:linear-gradient(135deg, rgba(11,39,66,.12), rgba(244,122,31,.16));
+      display:grid;
+      place-items:center;
+      border:1px solid rgba(11,39,66,.12);
+      flex:0 0 auto;
+    }
+
+    .badge svg{width:28px; height:28px}
+
+    .hero-card h2{
+      margin:0;
+      font-size:14px;
+      color:var(--navy);
+      letter-spacing:.2px;
+    }
+    .hero-card p{margin:4px 0 0; font-size:13px; color:var(--muted)}
+
+    section{padding:42px 0}
+    .section-head{
+      display:flex; align-items:flex-end; justify-content:space-between; gap:18px;
+      margin-bottom:16px;
+    }
+
+    .kicker{
+      color:var(--orange-2);
+      font-weight:800;
+      font-size:12px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+    }
+
+    h2{
+      margin:6px 0 0;
+      font-size: clamp(22px, 2.6vw, 30px);
+      letter-spacing:-.3px;
+      color:var(--navy);
+    }
+
+    .divider{height:1px; background:rgba(11,39,66,.10); margin-top:18px}
+
+    /* Services */
+    .cards{display:grid; grid-template-columns:1fr; gap:12px}
+
+    .card{
+      background:var(--card);
+      border:1px solid rgba(11,39,66,.10);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow-soft);
+      padding:18px;
+    }
+
+    .service-title{
+      display:flex; align-items:center; gap:10px;
+      margin:0;
+      font-size:16px;
+      color:var(--navy);
+    }
+
+    .dot{
+      width:10px; height:10px; border-radius:50%;
+      background:linear-gradient(135deg, var(--orange), var(--orange-2));
+      box-shadow:0 10px 18px rgba(244,122,31,.18);
+    }
+
+    .card p{margin:10px 0 0; color:var(--muted)}
+
+    /* FAQs */
+    .accordion{
+      border:1px solid rgba(11,39,66,.10);
+      border-radius:var(--radius);
+      overflow:hidden;
+      background:var(--card);
+      box-shadow:var(--shadow-soft);
+    }
+
+    .acc-item + .acc-item{border-top:1px solid rgba(11,39,66,.08)}
+
+    .acc-btn{
+      width:100%;
+      text-align:left;
+      background:transparent;
+      border:0;
+      padding:16px 16px;
+      font-weight:750;
+      color:var(--navy);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      cursor:pointer;
+      font-size:14px;
+    }
+
+    .acc-btn:hover{background:rgba(11,39,66,.04)}
+    .acc-btn:focus-visible{outline:3px solid var(--ring); outline-offset:-3px}
+
+    .chev{
+      width:18px; height:18px;
+      transition: transform .16s ease;
+      color:var(--muted);
+      flex:0 0 auto;
+    }
+
+    .acc-btn[aria-expanded="true"] .chev{transform: rotate(180deg)}
+
+    .acc-panel{
+      padding:0 16px 16px;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .acc-panel[hidden]{display:none}
+
+    /* Contact */
+    .contact-grid{display:grid; grid-template-columns:1fr; gap:14px}
+
+    form{
+      background:var(--card);
+      border:1px solid rgba(11,39,66,.10);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow-soft);
+      padding:18px;
+    }
+
+    .field{display:flex; flex-direction:column; gap:6px; margin-bottom:12px}
+    label{font-size:13px; font-weight:650; color:var(--navy)}
+
+    input, textarea{
+      font:inherit;
+      padding:11px 12px;
+      border-radius:14px;
+      border:1px solid rgba(11,39,66,.16);
+      background:#fff;
+      outline:none;
+    }
+
+    input:focus, textarea:focus{border-color:rgba(244,122,31,.55); box-shadow: 0 0 0 4px var(--ring)}
+
+    textarea{min-height:120px; resize:vertical}
+
+    .row{display:grid; grid-template-columns:1fr; gap:12px}
+
+    .checks{
+      display:grid;
+      gap:8px;
+      padding:10px 12px;
+      border:1px solid rgba(11,39,66,.16);
+      border-radius:14px;
+      background:rgba(11,39,66,.02);
+    }
+
+    .check{
+      display:flex; align-items:center; gap:10px;
+      font-size:14px;
+      color:var(--navy);
+    }
+
+    .check input{width:18px; height:18px}
+
+    .fine{
+      color:var(--muted);
+      font-size:12px;
+      margin-top:10px;
+    }
+
+    .contact-card{
+      background:linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.78));
+      border:1px solid rgba(11,39,66,.10);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:18px;
+    }
+
+    .contact-card h3{margin:0; color:var(--navy); font-size:16px}
+    .contact-card p{margin:10px 0 0; color:var(--muted)}
+
+    .contact-meta{margin-top:12px; display:grid; gap:8px; font-size:14px}
+    .meta-line{display:flex; gap:10px; align-items:flex-start; color:var(--navy)}
+    .meta-line svg{width:18px; height:18px; color:var(--orange-2); flex:0 0 auto; margin-top:2px}
+
+    /* Footer */
+    footer{
+      padding:28px 0 38px;
+      border-top:1px solid rgba(11,39,66,.10);
+      background:rgba(251,250,247,.65);
+    }
+
+    .foot{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      align-items:flex-start;
+      justify-content:space-between;
+    }
+
+    .social{display:flex; gap:10px; align-items:center}
+
+    .icon{
+      width:44px; height:44px;
+      display:grid; place-items:center;
+      border-radius:14px;
+      background:var(--card);
+      border:1px solid rgba(11,39,66,.12);
+      box-shadow:0 1px 0 rgba(11,39,66,.05);
+      transition: transform .12s ease, box-shadow .12s ease;
+    }
+
+    .icon:hover{transform: translateY(-1px); box-shadow:var(--shadow-soft)}
+    .icon:focus-visible{outline:3px solid var(--ring); outline-offset:2px}
+
+    .icon svg{width:20px; height:20px; color:var(--navy)}
+
+    /* Responsive */
+    @media (min-width: 760px){
+      .hero-grid{grid-template-columns: 1.35fr .95fr; gap:22px}
+      .cards{grid-template-columns: 1fr 1fr}
+      .contact-grid{grid-template-columns: 1.2fr .8fr}
+      .row{grid-template-columns:1fr 1fr}
+      .foot{flex-direction:row; align-items:center}
+    }
+
+    @media (max-width: 760px){
+      nav ul{display:none}
+      .menu{display:inline-flex}
+      header[data-open="true"] nav ul{
+        display:flex;
+        position:absolute;
+        left:18px; right:18px;
+        top:66px;
+        flex-direction:column;
+        background:rgba(251,250,247,.96);
+        border:1px solid rgba(11,39,66,.12);
+        border-radius:16px;
+        padding:10px;
+        box-shadow:var(--shadow);
+      }
+      header[data-open="true"] nav a{padding:12px 12px}
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      .btn, .icon, .chev{transition:none}
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header id="top" aria-label="Site header">
+    <div class="wrap">
+      <div class="nav">
+        <a class="brand" href="#top" aria-label="Future Keepers AZ home">
+          <div class="brand-mark" aria-hidden="true">
+            <!-- Place Logo.png in the same folder as this HTML file -->
+            <img src="Logo.png" alt="" />
+          </div>
+          <div class="brand-text">
+            <strong>Future Keepers AZ</strong>
+            <span>Chandler, AZ</span>
+          </div>
+        </a>
+
+        <div class="nav-right">
+          <button class="menu" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false">Menu</button>
+          <nav aria-label="Primary">
+            <ul id="navList">
+              <li><a href="#services">Services</a></li>
+              <li><a href="#faqs">FAQs</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="wrap">
+      <section class="hero" aria-label="Reveal section">
+        <div class="hero-grid">
+          <div>
+            <div class="kicker">Goalkeeper + player development</div>
+            <h1>Developing the game one player at a time</h1>
+            <p>We help young soccer players develop their skills.</p>
+            <div class="hero-actions">
+              <a class="btn primary" href="#contact">Request a Training</a>
+              <a class="btn" href="#services">See Services</a>
+            </div>
+          </div>
+
+          <aside class="hero-card" aria-label="Summary">
+            <div class="badge" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--navy);">
+                <path d="M12 2a10 10 0 1 0 10 10" />
+                <path d="M12 6v6l4 2" />
+              </svg>
+            </div>
+            <div>
+              <h2>Focused, game-relevant sessions</h2>
+              <p>Private and group trainings built around technique, decision making, and confidence.</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <div class="divider" role="presentation"></div>
+
+      <section id="services" aria-label="Services">
+        <div class="section-head">
+          <div>
+            <div class="kicker">Services</div>
+            <h2>Training options</h2>
+          </div>
+        </div>
+
+        <div class="cards" role="list">
+          <article class="card" role="listitem">
+            <h3 class="service-title"><span class="dot" aria-hidden="true"></span>Private Soccer Trainings</h3>
+            <p>Our sessions are built to help goalkeepers develop strong technique, sharp decision making, and elite mentality. Whether you’re just starting out or aiming to play at the next level, we offer focused, game-relevant training to elevate your skills and confidence in goal.</p>
+          </article>
+
+          <article class="card" role="listitem">
+            <h3 class="service-title"><span class="dot" aria-hidden="true"></span>Group Soccer Trainings</h3>
+            <p>We also offer group soccer trainings for goalkeepers who are looking to develop with others.</p>
+          </article>
+        </div>
+      </section>
+
+      <div class="divider" role="presentation"></div>
+
+      <section id="faqs" aria-label="Frequently asked questions">
+        <div class="section-head">
+          <div>
+            <div class="kicker">FAQs</div>
+            <h2>Common questions</h2>
+          </div>
+        </div>
+
+        <div class="accordion" id="accordion">
+          <div class="acc-item">
+            <button class="acc-btn" type="button" aria-expanded="false" aria-controls="faq1" id="faq1btn">
+              What are your age ranges?
+              <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M6 9l6 6 6-6" />
+              </svg>
+            </button>
+            <div class="acc-panel" id="faq1" role="region" aria-labelledby="faq1btn" hidden>
+              We coach goalkeepers of all ages but primarily focus on players from ages 6 to 18.
+            </div>
+          </div>
+
+          <div class="acc-item">
+            <button class="acc-btn" type="button" aria-expanded="false" aria-controls="faq2" id="faq2btn">
+              What skill levels do you coach?
+              <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M6 9l6 6 6-6" />
+              </svg>
+            </button>
+            <div class="acc-panel" id="faq2" role="region" aria-labelledby="faq2btn" hidden>
+              We welcome players of all skill level.
+            </div>
+          </div>
+
+          <div class="acc-item">
+            <button class="acc-btn" type="button" aria-expanded="false" aria-controls="faq3" id="faq3btn">
+              Do you coach non-goalkeepers?
+              <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M6 9l6 6 6-6" />
+              </svg>
+            </button>
+            <div class="acc-panel" id="faq3" role="region" aria-labelledby="faq3btn" hidden>
+              Yes, we train field players as well!
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="divider" role="presentation"></div>
+
+      <section id="contact" aria-label="Contact">
+        <div class="section-head">
+          <div>
+            <div class="kicker">Contact</div>
+            <h2>Request a training</h2>
+          </div>
+        </div>
+
+        <div class="contact-grid">
+          <form id="contactForm" novalidate>
+            <div class="row">
+              <div class="field">
+                <label for="name">Name</label>
+                <input id="name" name="name" type="text" autocomplete="name" required />
+              </div>
+              <div class="field">
+                <label for="business">Business name</label>
+                <input id="business" name="business" type="text" autocomplete="organization" />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" autocomplete="email" required />
+              </div>
+              <div class="field">
+                <label for="phone">Phone</label>
+                <input id="phone" name="phone" type="tel" autocomplete="tel" />
+              </div>
+            </div>
+
+            <div class="field">
+              <label>Services interested in</label>
+              <div class="checks" role="group" aria-label="Services interested in">
+                <label class="check"><input type="checkbox" name="services" value="Private Soccer Trainings" /> Private Soccer Trainings</label>
+                <label class="check"><input type="checkbox" name="services" value="Group Soccer Trainings" /> Group Soccer Trainings</label>
+                <label class="check"><input type="checkbox" name="services" value="Field Player Training" /> Field Player Training</label>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Tell us a bit about the player, goals, availability, and preferred location."></textarea>
+            </div>
+
+            <button class="btn primary" type="submit">Send Request</button>
+            <div class="fine">Submitting opens your email client to send a message to futurekeepersaz@gmail.com.</div>
+          </form>
+
+          <aside class="contact-card" aria-label="Contact details">
+            <h3>Future Keepers AZ</h3>
+            <p>Chandler-based training focused on skill development, confidence, and game readiness.</p>
+
+            <div class="contact-meta">
+              <div class="meta-line">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0Z" />
+                  <path d="M12 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+                </svg>
+                <div>Chandler, AZ</div>
+              </div>
+              <div class="meta-line">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M4 4h16v16H4z" />
+                  <path d="M22 6 12 13 2 6" />
+                </svg>
+                <div><a href="mailto:futurekeepersaz@gmail.com">futurekeepersaz@gmail.com</a></div>
+              </div>
+              <div class="meta-line">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M22 12a10 10 0 0 1-10 10" />
+                  <path d="M2 12A10 10 0 0 1 12 2" />
+                  <path d="M8 12a4 4 0 0 1 4-4" />
+                  <path d="M16 12a4 4 0 0 1-4 4" />
+                </svg>
+                <div><a href="https://www.instagram.com/future_keepers_az/" target="_blank" rel="noreferrer">Instagram</a></div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer aria-label="Footer">
+    <div class="wrap">
+      <div class="foot">
+        <div style="color: var(--navy); font-weight:750;">Future Keepers AZ • Chandler, AZ</div>
+        <div class="social" aria-label="Social links">
+          <a class="icon" href="https://www.instagram.com/future_keepers_az/" target="_blank" rel="noreferrer" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+              <path d="M16 11.37a4 4 0 1 1-7.74 1.36" />
+              <line x1="17.5" y1="6.5" x2="17.5" y2="6.5" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      const header = document.querySelector('header');
+      const menuBtn = document.getElementById('menuBtn');
+      const navList = document.getElementById('navList');
+
+      function setMenu(open){
+        header.dataset.open = open ? 'true' : 'false';
+        menuBtn.setAttribute('aria-expanded', String(open));
+      }
+
+      menuBtn.addEventListener('click', () => {
+        const open = header.dataset.open === 'true';
+        setMenu(!open);
+      });
+
+      // Close menu when a link is clicked (mobile)
+      navList.addEventListener('click', (e) => {
+        const t = e.target;
+        if (t && t.tagName === 'A') setMenu(false);
+      });
+
+      // Accordion (single-open)
+      const acc = document.getElementById('accordion');
+      const buttons = acc.querySelectorAll('.acc-btn');
+
+      function closeAll(exceptId){
+        buttons.forEach(btn => {
+          const id = btn.getAttribute('aria-controls');
+          const panel = document.getElementById(id);
+          const keep = exceptId && id === exceptId;
+          btn.setAttribute('aria-expanded', keep ? 'true' : 'false');
+          panel.hidden = !keep;
+        });
+      }
+
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.getAttribute('aria-controls');
+          const expanded = btn.getAttribute('aria-expanded') === 'true';
+          if (expanded){
+            closeAll(null);
+          } else {
+            closeAll(id);
+          }
+        });
+      });
+
+      // Contact form -> mailto
+      const form = document.getElementById('contactForm');
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById('name').value.trim();
+        const business = document.getElementById('business').value.trim();
+        const email = document.getElementById('email').value.trim();
+
+        if (!name || !email){
+          // Use native constraint UI where possible
+          form.reportValidity();
+          return;
+        }
+
+        const phone = document.getElementById('phone').value.trim();
+        const message = document.getElementById('message').value.trim();
+
+        const serviceChecks = Array.from(form.querySelectorAll('input[name="services"]:checked'))
+          .map(el => el.value);
+
+        const subject = encodeURIComponent('Training Request — Future Keepers AZ');
+
+        const lines = [
+          `Name: ${name}`,
+          business ? `Business: ${business}` : null,
+          `Email: ${email}`,
+          phone ? `Phone: ${phone}` : null,
+          `Services Interested In: ${serviceChecks.length ? serviceChecks.join(', ') : 'Not specified'}`,
+          '',
+          'Message:',
+          message || '(none)'
+        ].filter(Boolean);
+
+        const body = encodeURIComponent(lines.join('\n'));
+        window.location.href = `mailto:futurekeepersaz@gmail.com?subject=${subject}&body=${body}`;
+      });
+
+      // Initialize state
+      setMenu(false);
+      closeAll(null);
+    })();
+  </script>
+</body>
+</html>
